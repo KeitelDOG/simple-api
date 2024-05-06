@@ -30,15 +30,26 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/v1/links', function(req, res) {
+  let models = [
+    { id: 1, title: 'Link 1' },
+    { id: 2, title: 'Link 2' },
+    { id: 3, title: 'Link 3' },
+    { id: 4, title: 'Link 4' },
+    { id: 5, title: 'Link 5' },
+    { id: 6, title: 'Link 6' },
+    { id: 7, title: 'Link 7' },
+    { id: 8, title: 'Link 8' },
+  ];
+
+  const pageSize = req.query.pageSize;
+  if (pageSize) {
+    models = models.slice(0, pageSize);
+  }
+
   res.status(200)
     .send({
       date: getDateStr(),
-      models : [
-        { id: 1, title: 'Link 1' },
-        { id: 2, title: 'Link 2' },
-        { id: 3, title: 'Link 3' },
-        { id: 4, title: 'Link 4' },
-      ]
+      models
     });
 });
 
@@ -49,31 +60,49 @@ app.get('/api/v1/links/:id', function(req, res) {
 });
 
 app.get('/api/v1/countries', function(req, res) {
+  let models = [
+    { id: 1, title: 'Haiti' },
+    { id: 2, title: 'Brazil' },
+    { id: 3, title: 'Russia' },
+    { id: 4, title: 'India' },
+    { id: 5, title: 'China' },
+    { id: 6, title: 'South Africa' },
+  ];
+
+  const pageSize = req.query.pageSize;
+  if (pageSize) {
+    models = models.slice(0, pageSize);
+  }
+
   res.status(200)
     .send({
       date: getDateStr(),
-      models: [
-        { id: 1, title: 'Haiti' },
-        { id: 2, title: 'Brazil' },
-        { id: 3, title: 'Russia' },
-        { id: 4, title: 'India' },
-        { id: 5, title: 'China' },
-        { id: 6, title: 'South Africa' },
-      ]
+      models
     });
 });
 
 app.get('/api/v1/comments/link/:id', function(req, res) {
   const id = req.params.id;
+  let models = [
+    { id: 1, link_id: id, content: `Comment 1 for Link ${id}` },
+    { id: 2, link_id: id, content: `Comment 2 for Link ${id}` },
+    { id: 3, link_id: id, content: `Comment 3 for Link ${id}` },
+    { id: 4, link_id: id, content: `Comment 4 for Link ${id}` },
+    { id: 5, link_id: id, content: `Comment 5 for Link ${id}` },
+    { id: 6, link_id: id, content: `Comment 6 for Link ${id}` },
+    { id: 7, link_id: id, content: `Comment 7 for Link ${id}` },
+    { id: 8, link_id: id, content: `Comment 8 for Link ${id}` },
+  ];
+
+  const pageSize = req.query.pageSize;
+  if (pageSize) {
+    models = models.slice(0, pageSize);
+  }
+
   res.status(200)
     .send({
       date: getDateStr(),
-      models: [
-        { id: 1, link_id: id, content: `Comment 1 for Link ${id}` },
-        { id: 2, link_id: id, content: `Comment 2 for Link ${id}` },
-        { id: 3, link_id: id, content: `Comment 3 for Link ${id}` },
-        { id: 4, link_id: id, content: `Comment 4 for Link ${id}` },
-      ]
+      models
     });
 });
 
